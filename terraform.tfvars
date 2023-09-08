@@ -1,13 +1,13 @@
 appname = "weird-nginx" # Change to your nginxname
 prefix = "development"
-profile = "devthenet" # Change to your key
-region = "us-east-1"
+#profile = "nginx-mumbai" # Change to your key
+region = "ap-south-1"
 
-subnet_id = "subnet-f64f60bc" # I should create it's own subnet but... Just copy this from your other instance
-vpc_id = "vpc-604ee61a" # I should also create its own vpc... Just copy from existing
+subnet_id = "subnet-0f7d158f424551902" # I should create it's own subnet but... Just copy this from your other instance
+vpc_id = "vpc-06baa5a1c46c87dda" # I should also create its own vpc... Just copy from existing
 
-identity_location = "/home/peter/.ssh/id_devthenet_aws" # Change to your key location
+identity_location = "/home/sangram/.ssh/id_rsa" # Change to your key location
 
-ec2_ami_id = "ami-0f9cf087c1f27d9b1"
-ec2_instance_size = "t2.micro"
+ec2_ami_id = "ami-0f5ee92e2d63afc18"
+ec2_instance_size = "t3a.medium"
 ec2_instance_count = 1

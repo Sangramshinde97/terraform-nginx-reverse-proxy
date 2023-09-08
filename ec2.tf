@@ -6,8 +6,8 @@ resource "aws_instance" "oink" {
   subnet_id = "${var.subnet_id}"
   vpc_security_group_ids = ["${aws_security_group.oink.id}"]
 
-  tags {
-    Name = "nginx-${count.index}"
+  tags = {
+  Name = "nginx-${count.index}"
   }
 
   root_block_device {
@@ -32,6 +32,7 @@ resource "aws_instance" "oink" {
     }
 
     inline = [
+      "sudo apt-get update -y",
       "sudo apt-get install -y nginx",
       "sudo mv /home/ubuntu/oink /etc/nginx/sites-available/oink",
       "sudo ln -s /etc/nginx/sites-available/oink /etc/nginx/sites-enabled/oink",
@@ -45,7 +46,7 @@ resource "aws_instance" "oink" {
 resource "aws_security_group" "oink" {
   name        = "${var.appname}-${var.prefix}-oink"
   description = "oinkgo"
-  #vpc_id      = "${var.vpc_id}"
+  vpc_id      = "${var.vpc_id}"
 
   ingress {
     from_port   = 22
@@ -69,6 +70,6 @@ resource "aws_security_group" "oink" {
   }
 }
 
-output "oink ip" {
+output "oinkip" {
   value = "${aws_instance.oink.*.public_ip}"
 }
