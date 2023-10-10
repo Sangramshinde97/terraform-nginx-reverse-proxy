@@ -32,13 +32,17 @@ resource "aws_instance" "oink" {
     }
 
     inline = [
-      "sudo apt-get update -y",
-      "sudo apt-get install -y nginx",
-      "sudo mv /home/ubuntu/oink /etc/nginx/sites-available/oink",
-      "sudo ln -s /etc/nginx/sites-available/oink /etc/nginx/sites-enabled/oink",
-      "sudo rm /etc/nginx/sites-enabled/default",
-      "sudo systemctl reload nginx"
-    ]
+    "sudo apt-get update -y",
+    "echo 'Updating system'",
+    "sudo apt-get install -y nginx",
+    "echo 'Installing nginx'",
+    "sudo mv /home/ubuntu/oink /etc/nginx/sites-available/oink.conf",
+    "echo 'Moving oink.conf'",
+    "sudo ln -s /etc/nginx/sites-available/oink.conf /etc/nginx/sites-enabled/oink.conf",
+    "echo 'Creating symlink'",
+    "sudo systemctl reload nginx",
+    "echo 'Reloading nginx'"
+  ]
   }
 
 }
